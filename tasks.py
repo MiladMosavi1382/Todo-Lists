@@ -58,4 +58,10 @@ def complete_task(tasks, index):
         return True
 
     return False
+def undo_complete_task(tasks, index):
+    if 0 <= index < len(tasks):
+        tasks[index]["done"] = False
+        save_tasks(tasks)
+        return True
 
+    return False

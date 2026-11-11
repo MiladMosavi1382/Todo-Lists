@@ -6,7 +6,8 @@ from tasks import (
     load_tasks,
     add_task,
     delete_task,
-    complete_task
+    complete_task,
+    undo_complete_task
 )
 
 
@@ -190,6 +191,24 @@ def mark_completed():
     refresh_tasks()
 
 
+def mark_pending():
+    index = get_selected_task()
+
+    if index is None:
+        return
+
+    if not tasks[index]["done"]:
+        messagebox.showinfo(
+            "Information",
+            "This task is already pending!"
+        )
+        return
+
+    undo_complete_task(tasks, index)
+    refresh_tasks()
+
+
+
 # Buttons
 button_frame = tk.Frame(root, bg="#F3F4F6")
 button_frame.pack(pady=20)
@@ -223,6 +242,19 @@ complete_button = tk.Button(
 )
 complete_button.pack(side="left", padx=8)
 
+pending_button = tk.Button(
+    button_frame,
+    text="Undo Completed",
+    command=mark_pending,
+    bg="#F59E0B",
+    fg="white",
+    font=("Arial", 10, "bold"),
+    relief="flat",
+    padx=20,
+    pady=10,
+    cursor="hand2"
+)
+pending_button.pack(side="left", padx=8)
 
 delete_button = tk.Button(
     button_frame,
