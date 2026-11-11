@@ -46,3 +46,14 @@ to provide a graphical user interface.
 - Add, delete and complete tasks
 - JSON file storage
 - Automatic data saving
+## How to Use
+
+1. Run the application using Python.
+2. Enter a task title and click Add Task.
+3. Select a task and click Complete Task.
+4. Use Undo Completed to restore a task.
+5. Select a task and click Delete Task.
+
+## Data Storage
+
+Tasks are automatically saved in data/task.json.
