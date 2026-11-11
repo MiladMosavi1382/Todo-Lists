@@ -94,8 +94,16 @@ tree.column("number", width=60, anchor="center")
 tree.column("title", width=400, anchor="center")
 tree.column("status", width=150, anchor="center")
 
-tree.pack(fill="both", expand=True)
+scrollbar = ttk.Scrollbar(
+    table_frame,
+    orient="vertical",
+    command=tree.yview
+)
 
+tree.configure(yscrollcommand=scrollbar.set)
+
+scrollbar.pack(side="right", fill="y")
+tree.pack(side="left", fill="both", expand=True)
 
 # Counter
 counter = tk.Label(
